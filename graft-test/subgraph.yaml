@@ -1,0 +1,31 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+features:
+  - grafting
+graft:
+  base: QmeP5dPi6yQzwdg6gWtwXTozL59pkDyF5phVnnmRNpWzk3 # Deployment ID of base subgraph
+  block: 5955720 # End Block number till the data should be copied from base subgraph
+dataSources:
+  - kind: ethereum
+    name: Lock
+    network: sepolia
+    source:
+      address: "0xC67f48469ce495A171DAa40F48521E4db2d46Fa3"
+      abi: Lock
+      startBlock: 5958442
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Withdrawal
+      abis:
+        - name: Lock
+          file: ./abis/Lock.json
+      eventHandlers:
+        - event: Withdrawal(uint256,uint256)
+          handler: handleWithdrawal
+      file: ./src/lock.ts

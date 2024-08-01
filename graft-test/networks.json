@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "Lock": {
+      "address": "0xC67f48469ce495A171DAa40F48521E4db2d46Fa3",
+      "startBlock": 5958442
+    }
+  }
+}
